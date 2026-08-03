@@ -132,7 +132,7 @@
   form .btn{width:100%; justify-content:center; margin-top:6px}
 
   /* stats strip */
-  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; text-align:center}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:22px 18px; text-align:center}
   .stat .num{font-size:clamp(1.6rem,3vw,2.4rem); font-weight:800; color:var(--orange)}
   .stat .lbl{color:var(--muted); font-size:.9rem; margin-top:2px}
 
@@ -396,7 +396,7 @@
     </div>
     <div class="feature reveal" style="margin-top:24px;max-width:660px;border-left:3px solid var(--orange)">
       <h4 style="font-size:1.1rem;margin-bottom:6px">Pricing</h4>
-      <p style="color:var(--muted)">Standard — AED [ your price ] · Priority 48h — AED [ your price ]. Final quote once I've seen your CV and target role.</p>
+      <p style="color:var(--muted)">The price will be based on your request. Share your CV and target role, and I'll send you a quote.</p>
     </div>
     <div class="grid g2" style="align-items:start;margin-top:30px">
       <form class="formcard reveal" action="https://formsubmit.co/ap.jobsandreferrals@gmail.com" method="POST" enctype="multipart/form-data">
@@ -438,6 +438,8 @@
   <div class="wrap">
     <div class="stats">
       <div class="stat reveal"><div class="num">44,900+</div><div class="lbl">LinkedIn network</div></div>
+      <div class="stat reveal"><div class="num">1,500+</div><div class="lbl">People placed worldwide</div></div>
+      <div class="stat reveal"><div class="num">50+</div><div class="lbl">Companies · MENA &amp; Europe</div></div>
       <div class="stat reveal"><div class="num">1,270+</div><div class="lbl">Community members</div></div>
       <div class="stat reveal"><div class="num">6</div><div class="lbl">Core sectors served</div></div>
       <div class="stat reveal"><div class="num">Dubai</div><div class="lbl">UAE-based, MENA-focused</div></div>
@@ -469,6 +471,14 @@
     </div>
   </div>
 </section>
+<div id="ok" role="dialog" aria-modal="true" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(23,23,58,.93);align-items:center;justify-content:center;padding:24px">
+  <div style="max-width:420px;width:100%;text-align:center;background:#2a2b60;border:1px solid rgba(253,247,236,.14);border-radius:18px;padding:38px 30px">
+    <div style="width:66px;height:66px;border-radius:50%;background:#DC6813;color:#fff;font-size:34px;line-height:66px;margin:0 auto 18px">&#10003;</div>
+    <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:8px">Thank you!</h3>
+    <p style="color:#9aa0c0">Your submission was received. I&#8217;ll be in touch shortly.</p>
+    <button type="button" onclick="document.getElementById('ok').style.display='none'" class="btn btn-primary" style="margin-top:22px">Close</button>
+  </div>
+</div>
 </main>
 
 <footer>
@@ -501,6 +511,19 @@
   // scroll reveal
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Submit forms in the background so the page never navigates (no redirect, no 404)
+  document.querySelectorAll('form').forEach(function(f){
+    f.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn=f.querySelector('button[type="submit"]'); var orig=btn?btn.innerHTML:'';
+      if(btn){btn.disabled=true; btn.textContent='Sending\u2026';}
+      try{ await fetch(f.action,{method:'POST',body:new FormData(f),mode:'no-cors'}); }catch(err){}
+      if(btn){btn.disabled=false; btn.innerHTML=orig;}
+      try{ f.reset(); var fn=f.querySelector('.fname'); if(fn){fn.textContent='No file selected';} }catch(err){}
+      var ok=document.getElementById('ok'); if(ok){ok.style.display='flex';}
+    });
+  });
 
   // submission confirmation (FormSubmit redirects back with ?sent=1)
   if(new URLSearchParams(location.search).get('sent')==='1'){
