@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ATS CV Order — AP | Jobs &amp; Referrals</title>
+<meta name="description" content="Order an ATS-ready CV. A recruiter rewrites your CV so applicant tracking systems can read it — single column, keyword-matched to your target role. Delivered as .docx + PDF." />
+
+<!--
+  ATS CV ORDER — second page. Keep this file in the SAME folder as index.html.
+  If you rename the main file to index.html for hosting, update the links that point
+  to "index.html" below. The order form uses FormSubmit (activate once by
+  submitting it and clicking the confirmation email FormSubmit sends you).
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#212258; --navy-900:#17173a; --navy-700:#2b2c63; --card:#2a2b60;
+    --orange:#DC6813; --orange-600:#c25a0f; --cream:#FDF7EC; --muted:#9aa0c0;
+    --line:rgba(253,247,236,.14); --maxw:1120px;
+    --r:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',system-ui,sans-serif; color:var(--cream);
+    background:var(--navy); line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .eyebrow{font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--orange)}
+  h1,h2,h3{line-height:1.08; letter-spacing:-.02em}
+  h2.section-title{font-size:clamp(1.9rem,4vw,2.9rem); font-weight:800; margin:.4rem 0 1rem}
+  .lead{color:var(--muted); font-size:1.08rem; max-width:56ch}
+  .accent{color:var(--orange)}
+
+  /* buttons */
+  .btn{display:inline-flex; align-items:center; gap:.55rem; font-weight:600; font-size:1rem;
+    padding:.85rem 1.4rem; border-radius:999px; border:2px solid transparent; cursor:pointer;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease}
+  .btn:focus-visible{outline:3px solid var(--orange); outline-offset:3px}
+  .btn-primary{background:var(--orange); color:#fff}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--orange-600)}
+  .btn-ghost{background:transparent; color:var(--cream); border-color:var(--line)}
+  .btn-ghost:hover{transform:translateY(-2px); border-color:var(--orange)}
+  .btn .arw{transition:transform .2s ease}
+  .btn:hover .arw{transform:translateX(4px)}
+
+  /* nav */
+  header.nav{position:sticky; top:0; z-index:50; background:rgba(23,23,58,.82);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; height:68px}
+  .brand{display:flex; align-items:center; gap:.6rem; font-weight:700}
+  .brand .mono{width:38px;height:38px;flex:0 0 auto}
+  .brand small{display:block; font-size:.66rem; font-weight:500; color:var(--muted); letter-spacing:.12em}
+  .nav-links{display:flex; align-items:center; gap:1.6rem}
+  .nav-links a{font-size:.95rem; color:var(--muted); font-weight:500}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-cta{padding:.5rem 1rem; font-size:.9rem}
+  .burger{display:none; background:none; border:0; color:var(--cream); font-size:1.6rem; cursor:pointer}
+
+  /* hero */
+  .hero{position:relative; padding:72px 0 40px; overflow:hidden}
+  .hero .spark{position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(600px 300px at 78% 8%, rgba(220,104,19,.18), transparent 60%);}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.3rem); font-weight:800; max-width:16ch}
+  .hero .lead{margin-top:1.1rem; font-size:1.15rem}
+
+  /* the two doors (signature) */
+  .doors{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:40px}
+  .door{position:relative; border:1px solid var(--line); border-radius:var(--r);
+    padding:30px 28px 26px; background:linear-gradient(180deg, var(--navy-700), var(--card));
+    transition:transform .2s ease, border-color .2s ease}
+  .door:hover{transform:translateY(-4px); border-color:var(--orange)}
+  .door .tag{font-size:.8rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--orange)}
+  .door h3{font-size:1.55rem; font-weight:700; margin:.5rem 0 .4rem}
+  .door p{color:var(--muted); font-size:.98rem; margin-bottom:1.3rem}
+  .door.candidate{background:linear-gradient(180deg, #34351f22, var(--card))}
+
+  /* sections */
+  section{padding:72px 0; border-top:1px solid var(--line)}
+  .sec-head{max-width:60ch}
+  .grid{display:grid; gap:18px; margin-top:34px}
+  .grid.g4{grid-template-columns:repeat(4,1fr)}
+  .grid.g2{grid-template-columns:1fr 1fr; gap:28px}
+  .feature{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:22px}
+  .feature .ico{width:44px;height:44px;border-radius:12px;background:rgba(220,104,19,.15);
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .feature h4{font-size:1.06rem; font-weight:600; margin-bottom:.35rem}
+  .feature p{color:var(--muted); font-size:.92rem}
+
+  /* steps */
+  .steps{counter-reset:step; display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:34px}
+  .step{border-top:2px solid var(--orange); padding-top:14px}
+  .step .n{font-size:.78rem; font-weight:700; letter-spacing:.14em; color:var(--orange)}
+  .step h4{font-size:1.05rem; font-weight:600; margin:.35rem 0 .3rem}
+  .step p{color:var(--muted); font-size:.9rem}
+
+  /* forms */
+  .formcard{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:30px}
+  .formcard h3{font-size:1.35rem; font-weight:700; margin-bottom:.3rem}
+  .formcard .sub{color:var(--muted); font-size:.95rem; margin-bottom:20px}
+  .field{margin-bottom:16px}
+  label{display:block; font-size:.85rem; font-weight:500; margin-bottom:6px; color:var(--cream)}
+  input,select,textarea{width:100%; font-family:inherit; font-size:.98rem; color:var(--cream);
+    background:var(--navy-900); border:1px solid var(--line); border-radius:10px; padding:.72rem .9rem}
+  input::placeholder,textarea::placeholder{color:#7a80a0}
+  input:focus,select:focus,textarea:focus{outline:none; border-color:var(--orange)}
+  textarea{resize:vertical; min-height:96px}
+  select{appearance:none}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .file{position:relative; border:1.5px dashed var(--line); border-radius:10px; padding:18px; text-align:center; cursor:pointer; transition:border-color .2s}
+  .file:hover{border-color:var(--orange)}
+  .file input{position:absolute; inset:0; opacity:0; cursor:pointer}
+  .file .fname{color:var(--muted); font-size:.9rem; margin-top:4px}
+  .note{font-size:.82rem; color:var(--muted); margin-top:10px}
+  form .btn{width:100%; justify-content:center; margin-top:6px}
+
+  /* stats strip */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; text-align:center}
+  .stat .num{font-size:clamp(1.6rem,3vw,2.4rem); font-weight:800; color:var(--orange)}
+  .stat .lbl{color:var(--muted); font-size:.9rem; margin-top:2px}
+
+  /* contact */
+  .contact-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:30px}
+  .contact-card{display:flex; align-items:center; gap:14px; background:var(--card);
+    border:1px solid var(--line); border-radius:var(--r); padding:18px 20px; transition:border-color .2s, transform .2s}
+  .contact-card:hover{border-color:var(--orange); transform:translateY(-2px)}
+  .contact-card .ci{width:42px;height:42px;flex:0 0 auto;border-radius:10px;background:rgba(220,104,19,.15);display:flex;align-items:center;justify-content:center}
+  .contact-card b{font-weight:600}
+  .contact-card span{display:block; color:var(--muted); font-size:.85rem}
+
+  footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted); font-size:.88rem}
+  .foot-inner{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1; transform:none}
+
+  /* responsive */
+  @media(max-width:860px){
+    .nav-links{position:fixed; inset:68px 0 auto 0; flex-direction:column; gap:0; background:var(--navy-900);
+      border-bottom:1px solid var(--line); padding:8px 24px 18px; transform:translateY(-120%); transition:transform .25s ease}
+    .nav-links.open{transform:none}
+    .nav-links a{padding:12px 0; width:100%; border-bottom:1px solid var(--line)}
+    .nav-links .nav-cta{margin-top:12px; width:100%; justify-content:center}
+    .burger{display:block}
+    .grid.g4,.steps,.stats{grid-template-columns:1fr 1fr}
+    .grid.g2,.doors,.row2,.contact-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:480px){
+    .grid.g4,.steps,.stats{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important; transition:none!important; animation:none!important}
+    .reveal{opacity:1; transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="AP Jobs and Referrals home">
+      <svg class="mono" viewBox="0 0 48 48" role="img" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="none" stroke="#DC6813" stroke-width="2.5"/>
+        <text x="24" y="31" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="20">
+          <tspan fill="#FDF7EC">A</tspan><tspan fill="#DC6813">P</tspan></text>
+      </svg>
+      <span>AP | Jobs &amp; Referrals<small>Recruitment · UAE &amp; MENA</small></span>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="index.html#employers">For employers</a>
+      <a href="index.html#candidates">For candidates</a>
+      <a href="#order" style="color:var(--cream)">ATS CV</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/971585293292" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="border-top:0">
+  <div class="spark"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Service · ATS CV</p>
+    <h1 class="reveal">Get a CV the systems <span class="accent">can actually read.</span></h1>
+    <p class="lead reveal">Most CVs get filtered out before a human ever sees them. I rewrite yours to be ATS-ready — a clean single column, keyword-matched to the exact role you're targeting, and worded to get you shortlisted.</p>
+    <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="#order">Order your ATS CV <span class="arw">→</span></a>
+      <a class="btn btn-ghost" href="index.html#candidates">Back to main site</a>
+    </div>
+  </div>
+</section>
+
+<section aria-label="What you get">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">What you get</p>
+      <h2 class="section-title">Built to pass the parser — and impress the person.</h2>
+    </div>
+    <div class="grid g4">
+      <div class="feature reveal"><h4>ATS-safe format</h4><p>Single column, standard headings, text-based — no tables or graphics that break parsing.</p></div>
+      <div class="feature reveal"><h4>Keyword-matched</h4><p>Aligned to your target job post: the exact titles, tools and skills recruiters search.</p></div>
+      <div class="feature reveal"><h4>Recruiter-ready wording</h4><p>Achievements quantified with numbers, not vague duties — written to earn the interview.</p></div>
+      <div class="feature reveal"><h4>Two formats + revision</h4><p>Delivered as an editable .docx and a clean PDF, with one round of revisions included.</p></div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="How it works" style="background:var(--navy-900)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2 class="section-title">Three steps. A few days.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal" style="grid-column:span 1"><div class="n">STEP 01</div><h4>Order &amp; send</h4><p>Place your order below and attach your current CV plus the job post you're targeting.</p></div>
+      <div class="step reveal"><div class="n">STEP 02</div><h4>I rewrite</h4><p>I rebuild it ATS-optimized — single column, keyword-matched, quantified.</p></div>
+      <div class="step reveal"><div class="n">STEP 03</div><h4>You receive</h4><p>You get the .docx and PDF, ready to apply — with one revision round.</p></div>
+    </div>
+    <div class="feature reveal" style="margin-top:28px;max-width:640px;border-left:3px solid var(--orange)">
+      <h4 style="font-size:1.1rem;margin-bottom:6px">Pricing</h4>
+      <p style="color:var(--muted)">Standard — AED [ your price ] · Priority (48h) — AED [ your price ]. Final quote confirmed once I've seen your CV and target role.</p>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Order</p>
+      <h2 class="section-title">Order your ATS CV</h2>
+      <p class="lead">Fill this in and attach your current CV. I'll reply within one business day with the quote and timeline.</p>
+    </div>
+    <div class="grid g2" style="align-items:start;margin-top:30px">
+      <form class="formcard reveal" action="https://formsubmit.co/ap.jobsandreferrals@gmail.com" method="POST" enctype="multipart/form-data">
+        <h3>Your order</h3>
+        <p class="sub">All fields required. PDF only for your current CV.</p>
+        <input type="hidden" name="_subject" value="New ATS CV order — AP website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <div class="row2">
+          <div class="field"><label for="o-name">Full name</label><input id="o-name" name="Full name" required placeholder="Your name"></div>
+          <div class="field"><label for="o-email">Email</label><input id="o-email" type="email" name="Email" required placeholder="you@email.com"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="o-phone">Phone / WhatsApp</label><input id="o-phone" name="Phone" required placeholder="+971 …"></div>
+          <div class="field"><label for="o-role">Target role / title</label><input id="o-role" name="Target role" required placeholder="e.g. Store Manager"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="o-pkg">Package</label>
+            <select id="o-pkg" name="Package" required>
+              <option value="Standard ATS rewrite">Standard ATS rewrite</option>
+              <option value="Priority (48h)">Priority (48h)</option>
+            </select>
+          </div>
+          <div class="field"><label for="o-sector">Sector</label>
+            <select id="o-sector" name="Sector" required>
+              <option>Hospitality</option><option>Retail &amp; Luxury</option>
+              <option>Corporate &amp; Office</option><option>F&amp;B</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="o-post">Target job post (paste link or text)</label><textarea id="o-post" name="Target job post" required placeholder="Paste the job ad link or the full text you want to apply for…"></textarea></div>
+        <div class="field">
+          <label>Your current CV (PDF)</label>
+          <div class="file">
+            <input id="o-file" type="file" name="attachment" accept="application/pdf" required aria-label="Upload your current CV as PDF">
+            <div>📎 Tap to attach your CV</div>
+            <div class="fname" id="ofname">No file selected</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Place order <span class="arw">→</span></button>
+        <p class="note">You'll get a confirmation and quote by email. Payment is arranged after we confirm scope.</p>
+      </form>
+
+      <div class="reveal">
+        <div class="feature" style="padding:26px;margin-bottom:16px">
+          <h4 style="font-size:1.15rem">Why it matters</h4>
+          <p style="color:var(--muted)">In 2026 most employers use an applicant tracking system. If it can't read your CV, a recruiter never sees you — no matter how good you are.</p>
+        </div>
+        <div class="feature" style="padding:26px;margin-bottom:16px">
+          <h4 style="font-size:1.15rem">One CV, tailored right</h4>
+          <p style="color:var(--muted)">Send the job post you're aiming for and I match the CV to it. Applying to several very different roles? Ask about a tailored version for each.</p>
+        </div>
+        <div class="feature" style="padding:26px;border-left:3px solid var(--orange)">
+          <h4 style="font-size:1.15rem">Prefer to talk first?</h4>
+          <p style="color:var(--muted)">Message me and we'll sort it in a minute.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+            <a class="btn btn-ghost" href="https://wa.me/971585293292" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-ghost" href="mailto:ap.jobsandreferrals@gmail.com?subject=ATS%20CV%20order%20—%20AP">Email me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 class="section-title">Let's talk.</h2>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="mailto:ap.jobsandreferrals@gmail.com"><span class="ci">✉️</span><span><b>Email</b><span>ap.jobsandreferrals@gmail.com</span></span></a>
+      <a class="contact-card reveal" href="https://wa.me/971585293292" target="_blank" rel="noopener"><span class="ci">💬</span><span><b>Call / WhatsApp</b><span>+971 58 529 3292</span></span></a>
+      <a class="contact-card reveal" href="https://www.linkedin.com/in/andrii-piskarov/" target="_blank" rel="noopener"><span class="ci">in</span><span><b>LinkedIn</b><span>Andrii Piskarov</span></span></a>
+      <a class="contact-card reveal" href="https://t.me/ap_jobs_and_referrals" target="_blank" rel="noopener"><span class="ci">✈️</span><span><b>Telegram</b><span>AP | Jobs &amp; Referrals</span></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="yr"></span> AP | Jobs &amp; Referrals — Recruitment &amp; Referrals · Dubai, UAE</span>
+    <span><a href="index.html" style="color:var(--orange)">← Back to main site</a></span>
+  </div>
+</footer>
+
+<script>
+  const burger=document.getElementById('burger'), links=document.getElementById('navlinks');
+  burger.addEventListener('click',()=>{const o=links.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');burger.setAttribute('aria-expanded','false')}));
+  const file=document.getElementById('o-file'), fname=document.getElementById('ofname');
+  if(file){file.addEventListener('change',()=>{
+    const f=file.files[0];
+    if(!f){fname.textContent='No file selected';return}
+    if(f.type!=='application/pdf'){fname.textContent='Please choose a PDF file';file.value='';return}
+    fname.textContent=f.name;
+  });}
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
